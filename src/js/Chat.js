@@ -1,5 +1,5 @@
 import styles from '../scss/chat.scss';
-import { createDivEl, errorAlert } from './utils';
+import { createDivEl, errorAlert, newMessageNotification } from './utils';
 import { SendBirdAction } from './SendBirdAction';
 import { Spinner } from './components/Spinner';
 import { ChatLeftMenu } from './ChatLeftMenu';
@@ -71,6 +71,7 @@ class Chat {
     channelEvent.onMessageReceived = (channel, message) => {
       if (this.channel.url === channel.url) {
         this.main.renderMessages([message], false);
+        newMessageNotification();
       }
     };
     channelEvent.onMessageUpdated = (channel, message) => {
